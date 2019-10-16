@@ -185,6 +185,11 @@ angular.module('schemaForm').provider('sfBuilder', ['sfPathProvider', function(s
         var children = args.fieldFrag.children || args.fieldFrag.childNodes;
         for (var i = 0; i < children.length; i++) {
           var child = children[i];
+
+          if('getAttribute' in child === false) {
+            continue;
+          }
+
           var ngIf = child.getAttribute('ng-if');
           child.setAttribute(
             'ng-if',
